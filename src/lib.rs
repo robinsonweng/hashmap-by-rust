@@ -59,6 +59,12 @@ where
             .map(|&(_, ref v)| v)
     }
 
+    pub fn remove(&mut, self, key: &K) -> Option<V> {
+        let bucket = self.bucket(key);
+        let bucket = &mut self.buckets[bucket];
+        let i = bucket.iter().position(|&(ref ekey, _) | ekey == key)?;
+    }
+
     pub fn resize(&mut self) {
         let target_size = match self.buckets.len() {
             0 => INITIAL_SIZE,
